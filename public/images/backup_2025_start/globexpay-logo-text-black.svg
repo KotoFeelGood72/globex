@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g fill="black">
+    <!-- Круг слева -->
+    <path d="M80 60 A40 40 0 1 0 80 140 A40 40 0 1 0 80 60 Z M90 60 L90 140" stroke="black" stroke-width="12" fill="none"/>
+    <!-- Текст GlobexPay -->
+    <path d="M200 100 Q220 100 240 95 Q260 90 270 100 L280 110 L270 120 Q260 130 240 125 Q220 120 200 120 Z" />
+    <text x="300" y="120" font-family="Inter, Arial" font-size="64" font-weight="600">lobexPay</text>
+  </g>
+</svg>

@@ -1,0 +1,202 @@
+# Windsurf IDE Configuration
+
+# IDE Settings
+ide_settings:
+  language: typescript
+  formatter: prettier
+  linter: eslint
+  typescript:
+    version: "5.2.2"
+  next:
+    version: "15.1.2"
+  
+# Project Structure
+project_structure:
+  src:
+    app:
+      "(public)":
+        - layout.tsx
+        - page.tsx
+      "(protected)":
+        - layout.tsx
+        admin:
+          - dashboard
+          - users
+          - companies
+          - stats
+        broker:
+          - dashboard
+          - rates
+          - transactions
+        partner:
+          - dashboard
+          - companies
+        company:
+          - dashboard
+          - transactions
+      auth:
+        - signin
+        - signup
+    components:
+      auth:
+        - auth-guard.tsx
+        - role-guard.tsx
+        - sign-in-form.tsx
+        - sign-up-form.tsx
+      navigation:
+        - public-navigation.tsx
+        - protected-navigation.tsx
+      sections:
+        - hero.tsx
+        - about.tsx
+        - benefits.tsx
+        - faq.tsx
+        - contact-form.tsx
+      ui:
+        - button.tsx
+        - input.tsx
+        - form.tsx
+        - card.tsx
+      theme:
+        - theme-toggle.tsx
+    lib:
+      - auth.ts
+      - utils.ts
+      - api.ts
+    types:
+      - next-auth.d.ts
+      - api.d.ts
+    
+# Code Style
+code_style:
+  typescript:
+    semi: true
+    singleQuote: true
+    tabWidth: 2
+    trailingComma: all
+    importOrder:
+      - "^(react/(.*)$)|^(react$)"
+      - "^(next/(.*)$)|^(next$)"
+      - "^@/components/(.*)$"
+      - "^@/lib/(.*)$"
+      - "^@/types/(.*)$"
+      - "^[./]"
+    
+# Component Rules
+component_rules:
+  naming:
+    pattern: PascalCase
+    prefix: ""
+  structure:
+    - "use client"
+    - imports
+    - types/interfaces
+    - constants
+    - component
+    - styles
+    - exports
+  props:
+    required:
+      - type definitions
+      - default values
+      - documentation
+  
+# Route Rules
+route_rules:
+  public:
+    - "/"
+    - "/auth/*"
+  protected:
+    admin:
+      - "/admin/*"
+    broker:
+      - "/broker/*"
+    partner:
+      - "/partner/*"
+    company:
+      - "/company/*"
+    
+# Documentation Rules
+documentation:
+  components:
+    required:
+      - description
+      - props
+      - examples
+      - accessibility
+  functions:
+    required:
+      - description
+      - parameters
+      - return
+      - example
+  api:
+    required:
+      - endpoint
+      - method
+      - parameters
+      - response
+      - errors
+      
+# Git Rules
+git_rules:
+  branches:
+    pattern: feature|bugfix|hotfix/[a-z0-9-]+
+    protected:
+      - main
+      - develop
+      - staging
+  commits:
+    pattern: ^(feat|fix|docs|style|refactor|test|chore)(\([a-z-]+\))?: .+
+    scopes:
+      - auth
+      - ui
+      - api
+      - admin
+      - broker
+      - partner
+      - company
+  pr:
+    template:
+      - description
+      - changes
+      - testing
+      - screenshots
+      
+# Security Rules
+security_rules:
+  auth:
+    required:
+      - session validation
+      - role checks
+      - csrf protection
+  api:
+    required:
+      - rate limiting
+      - input validation
+      - error handling
+  env:
+    required:
+      - NEXTAUTH_SECRET
+      - NEXTAUTH_URL
+      - DATABASE_URL
+      
+# Performance Rules
+performance_rules:
+  images:
+    formats:
+      - webp
+      - avif
+    optimization:
+      - lazy loading
+      - size limits
+  components:
+    required:
+      - code splitting
+      - lazy loading
+      - memoization
+  api:
+    required:
+      - caching
+      - pagination
+      - rate limiting

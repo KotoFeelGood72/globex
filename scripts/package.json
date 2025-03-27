@@ -1,0 +1,9 @@
+{
+  "name": "contact-form-test",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7"
+  }
+}

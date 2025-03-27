@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест авторизации</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form action="http://localhost:4000/api/auth/callback/credentials" method="POST">
+        <input type="hidden" name="csrfToken" id="csrfToken" value="">
+        <input type="hidden" name="callbackUrl" value="http://localhost:4000/admin/dashboard">
+        <input type="hidden" name="json" value="true">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="admin@globexpay.com">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="Test123!">
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+
+    <script>
+        // Получаем CSRF токен
+        fetch('http://localhost:4000/api/auth/csrf')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('csrfToken').value = data.csrfToken;
+            });
+    </script>
+</body>
+</html>
