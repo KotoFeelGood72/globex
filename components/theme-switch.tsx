@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import { Button } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
+import { useTheme } from "next-themes";
+import { Button } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 
 export function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
@@ -20,9 +20,9 @@ export function ThemeSwitch() {
       variant="light"
       aria-label="Переключить тему"
       className="rounded-full w-10 h-10 transition-transform"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
-      {theme === 'light' ? (
+      {theme === "light" ? (
         <svg
           className="w-5 h-5"
           fill="none"

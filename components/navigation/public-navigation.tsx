@@ -1,6 +1,8 @@
-'use client';
+"use client";
 
-import { useSession } from 'next-auth/react';
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 import {
   Navbar,
   NavbarBrand,
@@ -10,30 +12,31 @@ import {
   NavbarMenuToggle,
   Button,
   ButtonGroup,
-} from '@nextui-org/react';
-import { ThemeSwitch } from '@/components/theme-switch';
-import { Logo } from '@/components/ui/logo';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Link as ScrollLink } from 'react-scroll';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+} from "@nextui-org/react";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { Logo } from "@/components/ui/logo";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Link as ScrollLink } from "react-scroll";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const navigationItems = [
-  { to: 'about', label: 'О нас' },
-  { to: 'calculator', label: 'Калькулятор' },
-  { to: 'benefits', label: 'Преимущества' },
-  { to: 'target-audience', label: 'Для кого?' },
-  { to: 'how-we-work', label: 'Как мы работаем' },
-  { to: 'faq', label: 'FAQ' },
-  { to: 'contact', label: 'Контакты' },
+  { to: "about", label: "О нас" },
+  { to: "calculator", label: "Калькулятор" },
+  { to: "benefits", label: "Преимущества" },
+  { to: "target-audience", label: "Для кого?" },
+  { to: "how-we-work", label: "Как мы работаем" },
+  { to: "faq", label: "FAQ" },
+  { to: "contact", label: "Контакты" },
 ];
 
 export function PublicNavigation() {
+  const { theme } = useTheme();
   const { data: session } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
 
   if (session?.user) {
     return null;
@@ -61,7 +64,7 @@ export function PublicNavigation() {
           className="sm:hidden"
         />
         <NavbarBrand className="gap-2.5">
-          <ScrollLink 
+          <ScrollLink
             to="hero"
             smooth={true}
             duration={500}
@@ -90,10 +93,10 @@ export function PublicNavigation() {
               offset={-100}
               onSetActive={() => setActiveSection(item.to)}
               className={cn(
-                'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+                "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
                 activeSection === item.to
-                  ? 'bg-primary text-primary-foreground'
-                  : 'hover:bg-accent hover:text-accent-foreground'
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-accent hover:text-accent-foreground"
               )}
             >
               {item.label}
@@ -103,20 +106,61 @@ export function PublicNavigation() {
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden sm:flex gap-3">
+        <ul className=" flex items-center gap-3">
+          <li>
+            <a href="#">
+              {" "}
+              <Image
+                src="/images/socials/fb.png"
+                alt="Facebook"
+                width={25}
+                height={25}
+                className={theme === "light" ? "invert" : ""}
+                priority
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              {" "}
+              <Image
+                src="/images/socials/vk.png"
+                alt="VK"
+                width={25}
+                height={25}
+                className={theme === "light" ? "invert" : ""}
+                priority
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              {" "}
+              <Image
+                src="/images/socials/im.png"
+                alt="Instagram"
+                width={25}
+                height={25}
+                className={theme === "light" ? "invert" : ""}
+                priority
+              />
+            </a>
+          </li>
+        </ul>
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
-        {process.env.NEXT_PUBLIC_ENABLE_AUTH === 'true' && (
+        {process.env.NEXT_PUBLIC_ENABLE_AUTH === "true" && (
           <ButtonGroup>
             <Button
-              onClick={() => router.push('/auth/signin')}
+              onClick={() => router.push("/auth/signin")}
               variant="flat"
               className="font-medium"
             >
               Войти
             </Button>
             <Button
-              onClick={() => router.push('/auth/signup')}
+              onClick={() => router.push("/auth/signup")}
               color="primary"
               className="font-medium"
             >
@@ -150,19 +194,19 @@ export function PublicNavigation() {
               offset={-100}
               onSetActive={() => handleSectionChange(item.to)}
               className={cn(
-                'block px-3 py-2 text-lg font-medium cursor-pointer rounded-lg',
+                "block px-3 py-2 text-lg font-medium cursor-pointer rounded-lg",
                 activeSection === item.to
-                  ? 'bg-primary text-primary-foreground'
-                  : 'hover:bg-accent hover:text-accent-foreground'
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-accent hover:text-accent-foreground"
               )}
             >
               {item.label}
             </ScrollLink>
           ))}
-          {process.env.NEXT_PUBLIC_ENABLE_AUTH === 'true' && (
+          {process.env.NEXT_PUBLIC_ENABLE_AUTH === "true" && (
             <div className="flex flex-col gap-2 mt-4">
               <Button
-                onClick={() => router.push('/auth/signin')}
+                onClick={() => router.push("/auth/signin")}
                 variant="flat"
                 className="font-medium w-full"
                 size="lg"
@@ -170,7 +214,7 @@ export function PublicNavigation() {
                 Войти
               </Button>
               <Button
-                onClick={() => router.push('/auth/signup')}
+                onClick={() => router.push("/auth/signup")}
                 color="primary"
                 className="font-medium w-full"
                 size="lg"

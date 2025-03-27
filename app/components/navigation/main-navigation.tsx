@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useSession, signOut } from "next-auth/react";
 import {
@@ -17,9 +17,9 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
-import { Logo } from '../brand/logo';
+import { Logo } from "../brand/logo";
 import { useState } from "react";
-import NextLink from 'next/link';
+import NextLink from "next/link";
 
 export function MainNavigation() {
   const { data: session } = useSession();
@@ -56,14 +56,14 @@ export function MainNavigation() {
   };
 
   const userRole = session?.user?.role as keyof typeof roleMenuItems;
-  const menuItems = session ? (roleMenuItems[userRole] || []) : publicMenuItems;
+  const menuItems = session ? roleMenuItems[userRole] || [] : publicMenuItems;
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: '/' });
+    signOut({ callbackUrl: "/" });
   };
 
   return (
-    <Navbar 
+    <Navbar
       onMenuOpenChange={setIsMenuOpen}
       isMenuOpen={isMenuOpen}
       className="bg-background/70 backdrop-blur-lg border-b border-border"
@@ -83,7 +83,7 @@ export function MainNavigation() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={index}>
-            <NextLink 
+            <NextLink
               href={item.href}
               className="text-foreground hover:text-primary transition-colors"
             >
@@ -101,9 +101,9 @@ export function MainNavigation() {
         {!session ? (
           <>
             <NavbarItem className="hidden sm:flex">
-              <Button 
+              <Button
                 as={NextLink}
-                href="/auth/signin" 
+                href="/auth/signin"
                 variant="flat"
                 className="min-w-[100px]"
               >
@@ -111,9 +111,9 @@ export function MainNavigation() {
               </Button>
             </NavbarItem>
             <NavbarItem>
-              <Button 
+              <Button
                 as={NextLink}
-                href="/auth/signup" 
+                href="/auth/signup"
                 color="primary"
                 variant="solid"
                 className="min-w-[100px]"
@@ -130,7 +130,7 @@ export function MainNavigation() {
                 as="button"
                 className="transition-transform"
                 color="primary"
-                name={session.user?.name || 'User'}
+                name={session.user?.name || "User"}
                 size="sm"
                 src={session.user?.image || undefined}
               />

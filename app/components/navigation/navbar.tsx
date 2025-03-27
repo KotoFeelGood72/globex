@@ -1,6 +1,16 @@
-'use client';
+"use client";
 
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+} from "@nextui-org/react";
 import { ThemeSwitch } from "../theme-switch";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -37,11 +47,13 @@ export function MainNavbar() {
     ],
   };
 
-  const userRole = session?.user?.role || 'public';
-  const menuItems = session ? protectedMenuItems[userRole as keyof typeof protectedMenuItems] : publicMenuItems;
+  const userRole = session?.user?.role || "public";
+  const menuItems = session
+    ? protectedMenuItems[userRole as keyof typeof protectedMenuItems]
+    : publicMenuItems;
 
   return (
-    <Navbar 
+    <Navbar
       onMenuOpenChange={setIsMenuOpen}
       isMenuOpen={isMenuOpen}
       className="bg-background/70 backdrop-blur-lg"
@@ -59,8 +71,8 @@ export function MainNavbar() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={index}>
-            <Link 
-              color="foreground" 
+            <Link
+              color="foreground"
               href={item.href}
               className="hover:text-primary"
             >
@@ -77,23 +89,29 @@ export function MainNavbar() {
         {!session ? (
           <>
             <NavbarItem>
-              <Button as={Link} color="primary" href="/auth/signin" variant="flat">
+              <Button
+                as={Link}
+                color="primary"
+                href="/auth/signin"
+                variant="flat"
+              >
                 Войти
               </Button>
             </NavbarItem>
             <NavbarItem>
-              <Button as={Link} color="primary" href="/auth/signup" variant="solid">
+              <Button
+                as={Link}
+                color="primary"
+                href="/auth/signup"
+                variant="solid"
+              >
                 Регистрация
               </Button>
             </NavbarItem>
           </>
         ) : (
           <NavbarItem>
-            <Button 
-              color="danger" 
-              variant="flat"
-              onClick={() => signOut()}
-            >
+            <Button color="danger" variant="flat" onClick={() => signOut()}>
               Выйти
             </Button>
           </NavbarItem>

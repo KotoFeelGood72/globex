@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { ExchangeCalculator } from '@/components/calculator/exchange-calculator';
-import { RateBook } from '@/components/calculator/rate-book';
+import { motion } from "framer-motion";
+import { ExchangeCalculator } from "@/components/calculator/exchange-calculator";
+import { RateBook } from "@/components/calculator/rate-book";
+import { Button } from "../ui/button";
+import { ContactModal } from "../ui/contact-modal";
+import { useState } from "react";
 
 export function Calculator() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section id="calculator" className="scroll-mt-20">
       <motion.div
@@ -18,7 +22,8 @@ export function Calculator() {
           Калькулятор обмена валют
         </h2>
         <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-          Рассчитайте стоимость обмена валют с учетом актуального курса и комиссий
+          Рассчитайте стоимость обмена валют с учетом актуального курса и
+          комиссий
         </p>
       </motion.div>
 
@@ -31,7 +36,7 @@ export function Calculator() {
         >
           <ExchangeCalculator />
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -39,8 +44,17 @@ export function Calculator() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <RateBook />
+          <Button
+            variant="default"
+            size="lg"
+            onClick={() => setIsOpen(true)}
+            className="w-full mt-6 mx-2"
+          >
+            Получить консультацию
+          </Button>
         </motion.div>
       </div>
+      <ContactModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </section>
   );
 }
