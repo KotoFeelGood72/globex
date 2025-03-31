@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
-  // output: 'standalone',
-  output: "export",
-  basePath: isProd ? "/globex" : "",
-  assetPrefix: isProd ? "/globex/" : "",
+  output: "standalone",
   images: {
     domains: [
       "images.unsplash.com",
